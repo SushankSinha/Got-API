@@ -1,0 +1,25 @@
+.container{
+    margin-top: 50px;
+    height: fit-content;
+    width: fit-content;
+    border: 5px solid black;
+    align-items: center;    
+    align-content: center;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+}
+
+input#character.form-control{
+    width: 200px;
+    display: inline-block;
+    margin: 2px;
+}
+
+.result{
+    margin: 10px;
+}
+
+.link{
+    margin: 20px;
+}

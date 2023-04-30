@@ -8,6 +8,10 @@
     align-self: center;
     display: flex;
     flex-direction: column;
+    background-image: url(got.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    color: white;
 }
 
 input#character.form-control{
@@ -19,7 +23,7 @@ input#character.form-control{
 .result{
     margin: 10px;
 }
-
 .link{
-    margin: 20px;
+    margin-left: 25%;
 }
+

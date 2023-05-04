@@ -1,8 +1,12 @@
+body{
+    border: 5px solid black;
+}
+
 .container{
-    margin-top: 50px;
+    margin: 5px;
+    padding: 5px;
     height: fit-content;
     width: fit-content;
-    border: 5px solid black;
     align-items: center;    
     align-content: center;
     align-self: center;

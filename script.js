@@ -1,24 +1,70 @@
-function myFunc(){
 
-    let character = document.getElementById("character").value;
-    let characterAll = character.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+let container = document.createElement("div");
+container.setAttribute('class', 'container');
+container.setAttribute('id', 'container');
+document.body.appendChild(container);
 
-const promise = fetch('https://thronesapi.com/api/v2/Characters');
+let apiName = document.createElement('h1');
+apiName.appendChild(document.createTextNode('Characters of The Game Of Thrones'));
+container.appendChild(apiName);
 
-promise.then((data)=>data.json()).then((res)=>{
-    res.forEach((obj)=>{ 
-        if(characterAll == obj.firstName || characterAll == obj.fullName || characterAll == obj.lastName){
-            // document.getElementById('firstName').innerHTML = `First Name : <b> ${obj.firstName} <b>`;
-            // document.getElementById('lastName').innerHTML = `Last Name : <b>  ${obj.lastName} <b>`;
-            document.getElementById('fullName').innerHTML = `<b>  ${obj.fullName} <b>`;
-            document.getElementById('title').innerHTML = `Title : <b> ${obj.title} <b>`;
-            document.getElementById('family').innerHTML = `Family :<b> ${obj.family} <b>`;
-            document.getElementById('imageUrl').src = obj.imageUrl;
-            document.getElementById('link').href = `https://en.wikipedia.org/wiki/${obj.firstName}_${obj.lastName}`;
-            document.getElementById('img').href = `https://www.google.co.in/search?q=${obj.firstName}+${obj.lastName}&hl=en&authuser=0&tbm=isch&sxsrf=APwXEdchFctVQSvLIe70QW3tkBZkvbZL-A%3A1682857382821&source=hp&biw=767&bih=704&ei=pl1OZM-gL8ve2roP57amkA0&iflsig=AOEireoAAAAAZE5rtqQKl3AGuAv3vmkXK_cYw1R6QBz6&ved=0ahUKEwjPi4ikzNH-AhVLr1YBHWebCdIQ4dUDCAc&oq=jon+snow&gs_lcp=CgNpbWcQDFAAWABgAGgAcAB4AIABAIgBAJIBAJgBAKoBC2d3cy13aXotaW1n&sclient=img`;
-        }
-    })
-})
+window.onload = function myFunc() { 
+
+  const promise = fetch("https://thronesapi.com/api/v2/Characters");
+
+  promise
+    .then((data) => data.json())
+    .then((res) => {
+      res.forEach((obj) => {
+  
+  let result = document.createElement("div");
+  result.setAttribute("class", "result");
+  result.setAttribute("id", "result");
+  container.appendChild(result);
+
+  let card = document.createElement("div");
+  card.setAttribute("class", "card");
+  card.setAttribute("id", "card");
+  card.style.width = "18rem";
+  result.appendChild(card);
+
+  let imageUrl = document.createElement("img");
+  imageUrl.setAttribute("class", "card-img-top");
+  imageUrl.setAttribute("id", "imageUrl");
+  imageUrl.src = obj.imageUrl;
+  card.appendChild(imageUrl);
+
+  let cardBody = document.createElement("div");
+  cardBody.setAttribute("class", "card-body");
+  cardBody.setAttribute("id", "cardBody");
+  card.appendChild(cardBody);
+
+  let fullName = document.createElement("h5");
+  fullName.setAttribute("class", "fullName");
+  fullName.setAttribute("id", "fullName");
+  fullName.style.fontWeight = "bold";
+  fullName.appendChild(
+    document.createTextNode(`${obj.fullName}`)
+  );
+  cardBody.appendChild(fullName);
+
+  let title = document.createElement("p");
+  title.setAttribute("id", "title");
+  title.appendChild(
+    document.createTextNode(`Title : ${obj.title}`)
+  );
+  cardBody.appendChild(title);
+
+  let family = document.createElement("p");
+  family.setAttribute("id", "family");
+  family.appendChild(
+    document.createTextNode(`Family : ${obj.family}`)
+  );
+  cardBody.appendChild(family);
+            
+        console.log(obj);
+      }
+      );
+    });
+    document.getElementById('character').value = "";
 }
-
-

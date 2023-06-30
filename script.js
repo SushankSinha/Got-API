@@ -1,15 +1,26 @@
 
-let container = document.createElement("div");
-container.setAttribute('class', 'container');
+let navbar = document.createElement('nav');
+navbar.setAttribute('class', "navbar navbar-expand-lg bg-body-tertiary");
+document.body.appendChild(navbar);
+
+let headerDiv = document.createElement('div');
+headerDiv.style.display = 'block';
+headerDiv.style.margin = 'auto';
+headerDiv.style.padding = '5px';
+navbar.appendChild(headerDiv);
+
+let heading = document.createElement('h1');
+let headingText = document.createTextNode('Got Characters');
+heading.appendChild(headingText);
+headerDiv.appendChild(heading);
+
+let container = document.createElement('div');
 container.setAttribute('id', 'container');
-document.body.appendChild(container);
+container.setAttribute('class', 'container-fluid');
+navbar.appendChild(container);
 
-let apiName = document.createElement('h1');
-apiName.appendChild(document.createTextNode('Characters of The Game Of Thrones'));
-container.appendChild(apiName);
-
-window.onload = function myFunc() { 
-
+window.onload = async function myFunc() { 
+try{
   const promise = fetch("https://thronesapi.com/api/v2/Characters");
 
   promise
@@ -26,11 +37,17 @@ window.onload = function myFunc() {
   card.setAttribute("class", "card");
   card.setAttribute("id", "card");
   card.style.width = "18rem";
+  card.style.height = "30rem";
   result.appendChild(card);
 
   let imageUrl = document.createElement("img");
   imageUrl.setAttribute("class", "card-img-top");
   imageUrl.setAttribute("id", "imageUrl");
+  imageUrl.style.width = '17rem';
+  imageUrl.style.height = '20rem';
+  imageUrl.style.margin = 'auto';
+  imageUrl.style.marginTop = '5px';
+  imageUrl.style.display = 'block';
   imageUrl.src = obj.imageUrl;
   card.appendChild(imageUrl);
 
@@ -61,10 +78,11 @@ window.onload = function myFunc() {
     document.createTextNode(`Family : ${obj.family}`)
   );
   cardBody.appendChild(family);
-            
-        console.log(obj);
+  
       }
       );
     });
-    document.getElementById('character').value = "";
+  }catch(err){
+    alert("Error!")
+  }
 }
